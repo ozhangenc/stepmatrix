@@ -15,6 +15,7 @@ Write k for the dimension of subspaces: 1
 Enter the root list : 1 2 4 5 7 9 10 12
 
 [[ 1  2  7  9]
+
  [ 4  5 10 12]]
  
  Process finished with exit code 0
