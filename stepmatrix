@@ -1,0 +1,53 @@
+import itertools
+from math import comb
+
+import numpy as np
+
+
+def row_increment(list_, integer):  # increase each element of the list by the given integer
+    list_copy = list(list_)
+    for i in range(len(list_)):
+        list_copy[i] += integer
+    return list_copy
+
+
+def new_list(row, column):
+    a = [row]
+    for x in column:
+        a.append(row_increment(row, x - 1))
+    return a
+
+
+def new_list_correct(row, column, T):
+    return set(T).issubset(set(np.array(new_list(row, column)).flatten()))
+
+
+n = int(input('Write n for the dimension of projective space: '))
+k = int(input('Write k for the dimension of subspaces: '))
+
+d = (n - k) * (k + 1)  # dimension
+
+# Below line read inputs from user using map() function
+T = list(map(int,
+             input("\nEnter the root list : ").strip().split()))[:d]
+
+x = comb(d - 2, n - k - 1)
+T_1 = T[:-1]  # root sequence except the last one(maximum one)
+
+R_1 = list(itertools.combinations(T_1, n - k))[0:x]  # list of possible bottom rows starting with 1 \
+# and not containing the last one
+
+s = d - n + k + 1
+C_1 = T[0:s]
+
+
+def main_function(n, k, T):
+    for x in R_1:
+        C = list(itertools.combinations(list(sorted(set(C_1).difference(set(x)))), k))
+        for y in C:
+            if x[-1] + y[-1] - 1 != T[-1] or new_list_correct(x, y, T) == False:
+                continue
+            print(np.array(new_list(x, y)))
+
+
+main_function(n, k, T)
