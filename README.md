@@ -9,8 +9,11 @@ In fact, the existence of a step matrix ouf of the sequence 1=f_1 f_2 f_3 ... f_
 
 # Example
 Write n for the dimension of projective space: 5
+
 Write k for the dimension of subspaces: 1
+
 Enter the root list : 1 2 4 5 7 9 10 12
+
 [[ 1  2  7  9]
  [ 4  5 10 12]]
  
